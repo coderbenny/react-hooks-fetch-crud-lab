@@ -27,6 +27,20 @@ function QuestionList() {
     )
   }
 
+  // Function for deleting a question
+  function deleteItem(id) {
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: 'DELETE',
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Question Deleted!", data)
+        const updatedQuestions = allQuestions.filter((question) => question.id !== id)
+        setAllQuestions(updatedQuestions)
+      })
+      .catch(error => console.error("Delete Failed!", error))
+  }
+
 
   return (
     <section>
@@ -35,7 +49,7 @@ function QuestionList() {
         {/* display QuestionItem components here after fetching */}
         {allQuestions.map((question) => {
           return (
-            <QuestionItem key={question.id} question={question} />)
+            <QuestionItem key={question.id} question={question} deleteQuestion={deleteItem} />)
         })}
       </ul>
     </section>
