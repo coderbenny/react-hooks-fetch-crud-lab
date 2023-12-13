@@ -76,6 +76,17 @@
       ],
       "correctIndex": 2,
       "id": 7
+    },
+    {
+      "prompt": "what is your favorite language",
+      "answers": [
+        "rice",
+        "beef",
+        "eggs",
+        "ugali"
+      ],
+      "correctIndex": 3,
+      "id": 8
     }
   ]
 }
