@@ -42,6 +42,27 @@ function QuestionList() {
   }
 
 
+  function handleChangeAnswer({ id, correctIndex }) {
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({ correctIndex })
+    })
+      .then(response => response.json())
+      .then(updatedQuestion => {
+        setAllQuestions(previousQuestions =>
+          previousQuestions.map(question => question.id === updatedQuestion.id ? updatedQuestion : question)
+        )
+      })
+  }
+
+
+
+
+
+
   return (
     <section>
       <h1>Quiz Questions</h1>
@@ -49,7 +70,7 @@ function QuestionList() {
         {/* display QuestionItem components here after fetching */}
         {allQuestions.map((question) => {
           return (
-            <QuestionItem key={question.id} question={question} deleteQuestion={deleteItem} />)
+            <QuestionItem key={question.id} question={question} deleteQuestion={deleteItem} onAnswerChange={handleChangeAnswer} />)
         })}
       </ul>
     </section>
