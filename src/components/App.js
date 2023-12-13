@@ -23,6 +23,7 @@ function App() {
       .catch(error => console.error("An error occured when fetching data!", error))
   ), [])
 
+  // If statement for setting the loading function
   if (isLoading) {
     return (
       <h2>Loading Questions...</h2>
